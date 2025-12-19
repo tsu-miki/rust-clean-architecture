@@ -3,4 +3,18 @@ name = "rust-clean-architecture"
 version = "0.1.0"
 edition = "2024"
 
+[workspace]
+members = ["rest", "handler", "usecase", "domain", "gateway", "driver"]
+
+[workspace.dependencies]
+rest = { path = "./rest" }
+handler = { path = "./handler" }
+usecase = { path = "./usecase" }
+domain = { path = "./domain" }
+gateway = { path = "./gateway" }
+driver = { path = "./driver" }
+
+tokio = "1.48.0"
+
 [dependencies]
+tokio.workspace = true
