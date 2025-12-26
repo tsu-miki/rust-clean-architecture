@@ -14,7 +14,9 @@ domain = { path = "./domain" }
 gateway = { path = "./gateway" }
 driver = { path = "./driver" }
 
-tokio = "1.48.0"
+tokio = { version = "1.48.0", features = ["full"]}
+axum = "0.8.8"
 
 [dependencies]
 tokio.workspace = true
+axum.workspace = true
