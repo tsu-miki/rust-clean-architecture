@@ -1,0 +1,60 @@
+# Rust Clean Architecture Project
+
+## 技術スタック
+- Rust
+- Axum (Web フレームワーク)
+- Tokio (非同期ランタイム)
+
+## アーキテクチャ
+クリーンアーキテクチャを採用。依存性逆転の原則（DIP）により、usecase は gateway に直接依存せず、port（trait）を介して疎結合を実現。
+
+```
+usecase → port ← gateway
+```
+
+## クレート構成と責務
+
+| クレート | 責務 |
+|---------|------|
+| `domain` | ドメインモデル、ビジネスルール |
+| `usecase` | アプリケーションロジック（portに依存） |
+| `port` | インターフェース定義（trait）- 依存性逆転のため |
+| `gateway` | portのtrait実装、外部サービスとの接続 |
+| `driver` | データベース等の具体的な実装 |
+| `handler` | HTTPハンドラー（コントローラー） |
+| `rest` | ルーティング定義 |
+
+## コーディング規約
+
+### Cargo.toml の依存関係
+ワークスペースのクレート依存を上に、空行を挟んでライブラリ依存を下に記述:
+
+```toml
+[dependencies]
+handler.workspace = true
+
+axum.workspace = true
+```
+
+### ルーター命名規則
+`{リソース名}_router` 形式を使用:
+- 例: `systems_router`, `users_router`
+
+### モジュール公開
+再エクスポート（`pub use`）は行わず、明示的なパスを使用:
+- 良い例: `rest::route::systems_router`
+- 避ける: `rest::systems_router`
+
+### ルーティング統合
+`main.rs` では `Router::new().merge()` でルーターを統合:
+
+```rust
+let app = Router::new()
+    .merge(systems_router())
+    .merge(users_router());
+```
+
+### コメント
+基本的にコメントは残さない。以下の場合のみ許可:
+- やむを得ない実装の意図を説明する場合
+- TODO タスクとして後で対応が必要な場合

@@ -1,9 +1,8 @@
 [package]
-name = "rest"
+name = "port"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-handler.workspace = true
+domain.workspace = true
 
-axum.workspace = true
