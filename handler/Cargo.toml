@@ -5,3 +5,7 @@ edition = "2024"
 
 [dependencies]
 axum.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
