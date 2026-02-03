@@ -4,6 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-handler.workspace = true
+usecase.workspace = true
+gateway.workspace = true
 
 axum.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true

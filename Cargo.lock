@@ -9,6 +9,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a23eb6b1614318a8071c9b2521f36b424b2c83db5eb3a0fead4a6c0809af6e61"
 
 [[package]]
+name = "async-trait"
+version = "0.1.89"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9035ad2d096bed7955a320ee7e2230574d28fd3c3a0f186cbea1ff3c7eed5dbb"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "atomic-waker"
 version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -137,16 +148,11 @@ dependencies = [
 [[package]]
 name = "gateway"
 version = "0.1.0"
-
-[[package]]
-name = "handler"
-version = "0.1.0"
 dependencies = [
  "anyhow",
- "axum",
- "serde",
- "thiserror",
- "tracing",
+ "async-trait",
+ "domain",
+ "port",
 ]
 
 [[package]]
@@ -338,6 +344,8 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 name = "port"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
+ "async-trait",
  "domain",
 ]
 
@@ -372,8 +380,13 @@ dependencies = [
 name = "rest"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "axum",
- "handler",
+ "gateway",
+ "serde",
+ "thiserror",
+ "tracing",
+ "usecase",
 ]
 
 [[package]]
@@ -622,6 +635,11 @@ checksum = "9312f7c4f6ff9069b165498234ce8be658059c6728633667c526e27dc2cf1df5"
 [[package]]
 name = "usecase"
 version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "domain",
+ "port",
+]
 
 [[package]]
 name = "wasi"
