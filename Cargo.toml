@@ -21,6 +21,8 @@ async-trait = "0.1"
 thiserror = "2.0"
 anyhow = "1.0"
 tracing = "0.1"
+rstest = "0.25"
+mockall = "0.13"
 
 [dependencies]
 rest.workspace = true

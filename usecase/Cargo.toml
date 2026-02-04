@@ -8,3 +8,7 @@ domain.workspace = true
 port.workspace = true
 
 anyhow.workspace = true
+
+[dev-dependencies]
+rstest.workspace = true
+tokio.workspace = true

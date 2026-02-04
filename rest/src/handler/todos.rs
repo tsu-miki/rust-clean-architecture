@@ -14,7 +14,7 @@ pub struct ToDoListResponse {
     pub todos: Vec<Todo>,
 }
 
-pub async fn list(State(app_state): State<AppState>) -> HandlerResult<Json<ToDoListResponse>> {
+pub async fn get_todos(State(app_state): State<AppState>) -> HandlerResult<Json<ToDoListResponse>> {
     let todos = app_state.get_todos_usecase.execute().await?;
     let response = ToDoListResponse {
         todos: todos
@@ -23,7 +23,7 @@ pub async fn list(State(app_state): State<AppState>) -> HandlerResult<Json<ToDoL
                 id: t.id,
                 name: t.name,
             })
-            .collect(),
+            .collect::<Vec<Todo>>(),
     };
     Ok(Json(response))
 }

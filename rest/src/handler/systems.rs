@@ -1,3 +1,3 @@
-pub async fn ping() -> &'static str {
+pub async fn get_ping() -> &'static str {
     "pong"
 }

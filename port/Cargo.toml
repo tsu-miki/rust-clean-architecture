@@ -8,4 +8,5 @@ domain.workspace = true
 
 async-trait.workspace = true
 anyhow.workspace = true
+mockall.workspace = true
 
