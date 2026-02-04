@@ -1,4 +1,4 @@
-use domain::Todo;
+use domain::todo::Todo;
 use port::todo_port::TodoPort;
 
 pub struct TodoGateway;
