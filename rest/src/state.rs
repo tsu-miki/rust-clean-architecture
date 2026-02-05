@@ -9,7 +9,7 @@ pub struct AppState {
 }
 
 pub fn create_app_state() -> AppState {
-    let todo_gateway = Arc::new(TodoGateway::new());
+    let todo_gateway = Arc::new(TodoGateway::default());
     let get_todos_usecase = Arc::new(GetTodosUsecase::new(todo_gateway));
 
     AppState { get_todos_usecase }
